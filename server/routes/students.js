@@ -6,16 +6,17 @@ const bcrypt = require('bcryptjs');
 // GET all students (with joined user info)
 router.get('/', (req, res) => {
   const query = `
-    SELECT students.id, users.name, users.email, students.roll_number,
-           departments.name AS department_name,
-           tutor.name AS tutor_name,
-           hod.name AS hod_name
-    FROM students
-    JOIN users ON students.user_id = users.id
-    JOIN departments ON students.department_id = departments.id
-    JOIN users AS tutor ON students.tutor_id = tutor.id
-    JOIN users AS hod ON students.hod_id = hod.id
-  `;
+  SELECT students.id, users.name, users.email, students.roll_number,
+         students.department_id,
+         departments.name AS department_name,
+         tutor.name AS tutor_name,
+         hod.name AS hod_name
+  FROM students
+  JOIN users ON students.user_id = users.id
+  JOIN departments ON students.department_id = departments.id
+  JOIN users AS tutor ON students.tutor_id = tutor.id
+  JOIN users AS hod ON students.hod_id = hod.id
+`;
   db.query(query, (err, results) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(results);

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import StudentDashboard from './pages/student/StudentDashboard';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
 
         {/* Placeholder dashboards - we'll build these next */}
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/student" element={<h2>Student Dashboard (coming soon)</h2>} />
+        <Route path="/student" element={<StudentDashboard />} />
         <Route path="/tutor" element={<h2>Tutor Dashboard (coming soon)</h2>} />
         <Route path="/hod" element={<h2>HOD Dashboard (coming soon)</h2>} />
         <Route path="/principal" element={<h2>Principal Dashboard (coming soon)</h2>} />
