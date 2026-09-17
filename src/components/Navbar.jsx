@@ -14,14 +14,17 @@ function Navbar({ title }) {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '10px 20px',
-      borderBottom: '1px solid #ccc',
-      marginBottom: '20px'
+      padding: '16px 0',
+      borderBottom: '1px solid var(--color-border)',
+      marginBottom: '24px'
     }}>
-      <h3>{title}</h3>
       <div>
-        <span style={{ marginRight: '15px' }}>{user?.name} ({user?.role})</span>
-        <button onClick={handleLogout} style={{ padding: '6px 14px' }}>Logout</button>
+        <p className="text-muted" style={{ margin: 0, letterSpacing: '0.3px' }}>Leave Management System</p>
+        <h2 style={{ margin: 0 }}>{title}</h2>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+        <span className="text-muted">{user?.name} · {user?.role}</span>
+        <button onClick={handleLogout} className="btn btn-outline">Logout</button>
       </div>
     </div>
   );
