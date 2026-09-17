@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axios';
 import Navbar from '../../components/Navbar';
+import { formatDate, formatAppliedDate } from '../../utils/formatDate';
 
 function StudentDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -90,7 +91,7 @@ function StudentDashboard() {
     <div style={{ maxWidth: '600px', margin: '50px auto' }}>
       <Navbar title="Student Dashboard" />
       <h2>Welcome, {studentInfo.name}</h2>
-      <p>Department: {studentInfo.department_name} | Tutor: {studentInfo.tutor_name} | HOD: {studentInfo.hod_name}</p>
+      <p>Roll No: {studentInfo.roll_number || 'Not assigned'} | Department: {studentInfo.department_name} | Tutor: {studentInfo.tutor_name} | HOD: {studentInfo.hod_name}</p>
 
       <h3>Apply for Leave</h3>
       <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
@@ -135,7 +136,8 @@ function StudentDashboard() {
       <ul style={{ listStyle: 'none', padding: 0 }}>
         {leaveHistory.map((lr) => (
           <li key={lr.id} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-            <strong>{lr.from_date} → {lr.to_date}</strong> ({lr.number_of_days} days)
+            <strong>{formatDate(lr.from_date)} → {formatDate(lr.to_date)}</strong> ({lr.number_of_days} days)
+            <p style={{ fontSize: '13px', color: '#777' }}>Applied on: {formatAppliedDate(lr.created_at)}</p>
             <p>{lr.reason}</p>
             <p>
               Tutor: <strong>{lr.tutor_status}</strong> |

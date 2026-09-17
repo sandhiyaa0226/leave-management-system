@@ -44,7 +44,7 @@ router.get('/tutor/:tutorId', (req, res) => {
   const { tutorId } = req.params;
 
   const query = `
-    SELECT leave_requests.*, users.name AS student_name
+    SELECT leave_requests.*, users.name AS student_name,students.roll_number
     FROM leave_requests
     JOIN students ON leave_requests.student_id = students.id
     JOIN users ON students.user_id = users.id
@@ -100,7 +100,7 @@ router.get('/hod/:hodId', (req, res) => {
   const { hodId } = req.params;
 
   const query = `
-    SELECT leave_requests.*, users.name AS student_name
+    SELECT leave_requests.*, users.name AS student_name,students.roll_number
     FROM leave_requests
     JOIN students ON leave_requests.student_id = students.id
     JOIN users ON students.user_id = users.id
@@ -153,7 +153,7 @@ router.put('/:id/hod-review', (req, res) => {
 
 router.get('/principal/:principalId', (req, res) => {
   const query = `
-    SELECT leave_requests.*, users.name AS student_name, departments.name AS department_name
+    SELECT leave_requests.*, users.name AS student_name,students.roll_number, departments.name AS department_name
     FROM leave_requests
     JOIN students ON leave_requests.student_id = students.id
     JOIN users ON students.user_id = users.id
@@ -196,7 +196,7 @@ router.put('/:id/principal-review', (req, res) => {
 // GET - Admin: fetch ALL leave requests across the college, with student/department info
 router.get('/all', (req, res) => {
   const query = `
-    SELECT leave_requests.*, users.name AS student_name, departments.name AS department_name
+    SELECT leave_requests.*, users.name AS student_name, students.roll_number, departments.name AS department_name
     FROM leave_requests
     JOIN students ON leave_requests.student_id = students.id
     JOIN users ON students.user_id = users.id

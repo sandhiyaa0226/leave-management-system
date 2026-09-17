@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axios';
 import Navbar from '../../components/Navbar';
-
+import { formatDate, formatAppliedDate } from '../../utils/formatDate';
 function HODDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [requests, setRequests] = useState([]);
@@ -57,7 +57,8 @@ function HODDashboard() {
       {pendingRequests.length === 0 && <p>No pending requests.</p>}
       {pendingRequests.map((r) => (
         <div key={r.id} style={{ border: '1px solid #ccc', padding: '12px', marginBottom: '10px' }}>
-          <p><strong>{r.student_name}</strong> — {r.from_date} to {r.to_date} ({r.number_of_days} days)</p>
+          <p><strong>{r.student_name}</strong> ({r.roll_number || 'No Roll No'}) — {formatDate(r.from_date)} to {formatDate(r.to_date)} ({r.number_of_days} days)</p>
+          <p style={{ fontSize: '13px', color: '#777' }}>Applied on: {formatAppliedDate(r.created_at)}</p>
           <p>Reason: {r.reason}</p>
           {r.attachment && <p>Attachment: {r.attachment}</p>}
           <input
@@ -80,7 +81,8 @@ function HODDashboard() {
       {reviewedRequests.length === 0 && <p>None yet.</p>}
       {reviewedRequests.map((r) => (
         <div key={r.id} style={{ border: '1px solid #eee', padding: '10px', marginBottom: '8px', color: '#555' }}>
-          <p>{r.student_name} — {r.from_date} to {r.to_date} — <strong>{r.hod_status}</strong></p>
+          <p>{r.student_name} ({r.roll_number || 'No Roll No'}) — {formatDate(r.from_date)} to {formatDate(r.to_date)} — <strong>{r.tutor_status}</strong></p>
+<p style={{ fontSize: '12px', color: '#999' }}>Applied on: {formatAppliedDate(r.created_at)}</p>
         </div>
       ))}
     </div>

@@ -3,6 +3,7 @@ import api from '../../api/axios';
 import ManageStaff from './ManageStaff';
 import ManageStudents from './ManageStudents';
 import Navbar from '../../components/Navbar';
+import AllLeaveRequests from './AllLeaveRequests';
 
 function AdminDashboard() {
   const [departments, setDepartments] = useState([]);
@@ -67,6 +68,8 @@ function AdminDashboard() {
 <ManageStaff />
         <hr style={{ margin: '40px 0' }} />
 <ManageStudents />
+<hr style={{ margin: '40px 0' }} />
+<AllLeaveRequests />
     </div>  
   );
 }
