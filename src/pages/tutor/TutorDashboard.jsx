@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axios';
-
+import Navbar from '../../components/Navbar';
 function TutorDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
   const [requests, setRequests] = useState([]);
@@ -46,6 +46,7 @@ function TutorDashboard() {
 
   return (
     <div style={{ maxWidth: '700px', margin: '50px auto' }}>
+       <Navbar title="Tutor Dashboard" />
       <h2>Tutor Dashboard — {user.name}</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}

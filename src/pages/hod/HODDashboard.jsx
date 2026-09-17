@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axios';
+import Navbar from '../../components/Navbar';
 
 function HODDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -46,6 +47,7 @@ function HODDashboard() {
 
   return (
     <div style={{ maxWidth: '700px', margin: '50px auto' }}>
+      <Navbar title="HOD Dashboard" />
       <h2>HOD Dashboard — {user.name}</h2>
 
       {error && <p style={{ color: 'red' }}>{error}</p>}

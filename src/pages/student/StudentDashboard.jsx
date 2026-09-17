@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../../api/axios';
+import Navbar from '../../components/Navbar';
 
 function StudentDashboard() {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -87,6 +88,7 @@ function StudentDashboard() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '50px auto' }}>
+      <Navbar title="Student Dashboard" />
       <h2>Welcome, {studentInfo.name}</h2>
       <p>Department: {studentInfo.department_name} | Tutor: {studentInfo.tutor_name} | HOD: {studentInfo.hod_name}</p>
 

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../../api/axios';
 import ManageStaff from './ManageStaff';
 import ManageStudents from './ManageStudents';
+import Navbar from '../../components/Navbar';
 
 function AdminDashboard() {
   const [departments, setDepartments] = useState([]);
@@ -39,6 +40,7 @@ function AdminDashboard() {
 
   return (
     <div style={{ maxWidth: '600px', margin: '50px auto' }}>
+      <Navbar title="Admin Dashboard" />
       <h2>Admin Dashboard</h2>
 
       <h3>Departments</h3>
