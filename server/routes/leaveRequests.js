@@ -193,4 +193,22 @@ router.put('/:id/principal-review', (req, res) => {
     }
   );
 });
+// GET - Admin: fetch ALL leave requests across the college, with student/department info
+router.get('/all', (req, res) => {
+  const query = `
+    SELECT leave_requests.*, users.name AS student_name, departments.name AS department_name
+    FROM leave_requests
+    JOIN students ON leave_requests.student_id = students.id
+    JOIN users ON students.user_id = users.id
+    JOIN departments ON students.department_id = departments.id
+    ORDER BY leave_requests.created_at DESC
+  `;
+
+  db.query(query, (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(results);
+  });
+});
+
+
 module.exports = router;
